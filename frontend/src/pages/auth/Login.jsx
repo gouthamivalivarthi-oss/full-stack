@@ -41,15 +41,13 @@ export const Login = () => {
       console.error('Login error details:', err);
 
       if (!err.response) {
-        setError('Network error. Please check your internet connection.');
+        setError('Unable to reach the server. Please ensure the backend server is running on port 5000.');
       } else if (err.response.status === 401) {
         setError('Invalid email or password.');
       } else if (err.response.status === 400) {
         setError(err.response.data?.message || 'Please enter your email and password.');
-      } else if (err.response.status === 405) {
-        setError('Unable to connect to the server. Please try again.');
       } else if (err.response.status >= 500) {
-        setError('Unable to connect to the server. Please try again.');
+        setError(err.response.data?.message || 'Unable to connect to the backend server. Please verify port 5000 is running.');
       } else {
         setError(err.response.data?.message || 'Unable to connect to the server. Please try again.');
       }

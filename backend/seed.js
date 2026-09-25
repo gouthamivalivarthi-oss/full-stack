@@ -1,8 +1,15 @@
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 require('dotenv').config();
+
 const dns = require('dns');
 try {
   dns.setServers(['8.8.8.8', '1.1.1.1']);
 } catch (e) {}
+
+const DEFAULT_MONGODB_URI =
+  'mongodb+srv://gouthamivalivarthi_db_user:8ozQKXbosgcVud30@cluster0.midmq3i.mongodb.net/project_collab?retryWrites=true&w=majority&appName=Cluster0';
 
 const mongoose = require('mongoose');
 const User = require('./models/User');
@@ -17,7 +24,8 @@ const Message = require('./models/Message');
 
 const seedData = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
+    const mongoUri = process.env.MONGODB_URI || DEFAULT_MONGODB_URI;
+    await mongoose.connect(mongoUri);
     console.log('MongoDB connected for seeding...');
 
     // Clear existing collections

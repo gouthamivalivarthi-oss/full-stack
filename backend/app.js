@@ -1,4 +1,8 @@
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 require('dotenv').config();
+
 const dns = require('dns');
 try {
   dns.setServers(['8.8.8.8', '1.1.1.1']);
@@ -8,7 +12,6 @@ try {
 process.env.JWT_SECRET =
   process.env.JWT_SECRET || 'collab_platform_jwt_secret_super_secure_key_2026_xyz';
 
-const path = require('path');
 const os = require('os');
 const express = require('express');
 const cors = require('cors');
