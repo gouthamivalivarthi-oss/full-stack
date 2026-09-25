@@ -9,7 +9,7 @@ try {
 } catch (e) {}
 
 const DEFAULT_MONGODB_URI =
-  'mongodb+srv://gouthamivalivarthi_db_user:8ozQKXbosgcVud30@cluster0.midmq3i.mongodb.net/project_collab?retryWrites=true&w=majority&appName=Cluster0';
+  'mongodb://gouthamivalivarthi_db_user:8ozQKXbosgcVud30@ac-t0opm9p-shard-00-00.midmq3i.mongodb.net:27017,ac-t0opm9p-shard-00-01.midmq3i.mongodb.net:27017,ac-t0opm9p-shard-00-02.midmq3i.mongodb.net:27017/project_collab?ssl=true&replicaSet=atlas-icbabk-shard-0&authSource=admin&retryWrites=true&w=majority';
 
 const mongoose = require('mongoose');
 const User = require('./models/User');

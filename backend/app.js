@@ -66,6 +66,9 @@ if (process.env.NODE_ENV !== 'test') {
 
 // Ensure database is connected before handling any API request
 app.use(async (req, res, next) => {
+  if (req.path === '/health' || req.path === '/api/health') {
+    return next();
+  }
   try {
     await connectDB();
     next();
@@ -73,7 +76,7 @@ app.use(async (req, res, next) => {
     console.error('Database connection error in request middleware:', error.message);
     res.status(500).json({
       success: false,
-      message: 'Database connection failed. Please ensure MongoDB Atlas IP whitelist allows connections (0.0.0.0/0).',
+      message: `Database connection failed (${error.message}). Please check network/DNS connectivity or ensure MongoDB Atlas IP whitelist allows connections (0.0.0.0/0).`,
       error: error.message,
     });
   }

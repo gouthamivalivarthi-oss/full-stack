@@ -58,9 +58,16 @@ io.on('connection', (socket) => {
 
 const PORT = process.env.PORT || 5000;
 
+const connectDB = require('./config/db');
+
 if (require.main === module || !process.env.VERCEL) {
-  server.listen(PORT, '0.0.0.0', () => {
+  server.listen(PORT, '0.0.0.0', async () => {
     console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+    try {
+      await connectDB();
+    } catch (err) {
+      console.error('Initial MongoDB connection warning:', err.message);
+    }
   });
 }
 
