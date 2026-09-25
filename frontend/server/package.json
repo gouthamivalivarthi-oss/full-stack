@@ -1,5 +1,9 @@
 {
   "name": "collab-server",
   "version": "1.0.0",
-  "type": "commonjs"
+  "type": "commonjs",
+  "scripts": {
+    "build": "node -e \"console.log('Build completed')\"",
+    "start": "node app.js"
+  }
 }

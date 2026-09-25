@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: collabspace-platform
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        value: mongodb://gouthamivalivarthi_db_user:8ozQKXbosgcVud30@ac-t0opm9p-shard-00-00.midmq3i.mongodb.net:27017,ac-t0opm9p-shard-00-01.midmq3i.mongodb.net:27017,ac-t0opm9p-shard-00-02.midmq3i.mongodb.net:27017/project_collab?ssl=true&replicaSet=atlas-icbabk-shard-0&authSource=admin&retryWrites=true&w=majority
+      - key: JWT_SECRET
+        value: collab_platform_jwt_secret_super_secure_key_2026_xyz

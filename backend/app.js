@@ -116,6 +116,23 @@ const mountRoutes = (prefix = '') => {
 mountRoutes('/api');
 mountRoutes('');
 
+// Serve static frontend files in production if dist exists
+const fs = require('fs');
+const frontendDist = path.resolve(__dirname, '../frontend/dist');
+if (fs.existsSync(frontendDist)) {
+  app.use(express.static(frontendDist));
+  app.get('*', (req, res, next) => {
+    if (
+      req.path.startsWith('/api') ||
+      req.path.startsWith('/uploads') ||
+      req.path.startsWith('/socket.io')
+    ) {
+      return next();
+    }
+    res.sendFile(path.resolve(frontendDist, 'index.html'));
+  });
+}
+
 // 404 Route handler for unknown endpoints
 app.use((req, res) => {
   res.status(404).json({
