@@ -1,23 +1,7 @@
-require('dotenv').config();
-const dns = require('dns');
-try {
-  dns.setServers(['8.8.8.8', '1.1.1.1']);
-} catch (e) {}
-
 const http = require('http');
-const path = require('path');
-const express = require('express');
-const cors = require('cors');
-const morgan = require('morgan');
 const { Server } = require('socket.io');
+const app = require('./app');
 
-const connectDB = require('./config/db');
-const errorHandler = require('./middleware/error');
-
-// Connect to MongoDB Atlas
-connectDB();
-
-const app = express();
 const server = http.createServer(app);
 
 // Setup Socket.IO
@@ -29,58 +13,8 @@ const io = new Server(server, {
   },
 });
 
-// Make io accessible in controllers via req.app.get('io')
+// Update io on app instance
 app.set('io', io);
-
-// Middleware
-app.use(
-  cors({
-    origin: true,
-    credentials: true,
-  })
-);
-app.use(express.json({ limit: '25mb' }));
-app.use(express.urlencoded({ extended: true, limit: '25mb' }));
-
-if (process.env.NODE_ENV !== 'test') {
-  app.use(morgan('dev'));
-}
-
-// Serve uploaded static files
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: 'Online Project Collaboration Platform API is running smoothly',
-    timestamp: new Date().toISOString(),
-  });
-});
-
-// API Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/users', require('./routes/users'));
-app.use('/api/projects', require('./routes/projects'));
-app.use('/api/tasks', require('./routes/tasks'));
-app.use('/api/comments', require('./routes/comments'));
-app.use('/api/files', require('./routes/files'));
-app.use('/api/messages', require('./routes/messages'));
-app.use('/api/notifications', require('./routes/notifications'));
-app.use('/api/invitations', require('./routes/invitations'));
-app.use('/api/dashboard', require('./routes/dashboard'));
-app.use('/api/admin', require('./routes/admin'));
-
-// 404 Route handler for unknown endpoints
-app.use((req, res, next) => {
-  res.status(404).json({
-    success: false,
-    message: `Resource not found at ${req.originalUrl}`,
-  });
-});
-
-// Centralized Error Handling Middleware
-app.use(errorHandler);
 
 // Real-time Socket.IO Event Handlers
 io.on('connection', (socket) => {
@@ -124,8 +58,10 @@ io.on('connection', (socket) => {
 
 const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
-});
+if (require.main === module || !process.env.VERCEL) {
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+  });
+}
 
 module.exports = { app, server };
