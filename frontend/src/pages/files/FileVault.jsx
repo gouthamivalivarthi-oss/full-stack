@@ -224,7 +224,7 @@ export const FileVault = () => {
 
                 <div className="flex items-center gap-1">
                   <a
-                    href={`${API_BASE_URL}/files/${file._id}/download`}
+                    href={`${API_BASE_URL}/files/${file._id}/download?token=${localStorage.getItem('token') || ''}`}
                     target="_blank"
                     rel="noreferrer"
                     className="p-1.5 text-slate-500 hover:text-sky-600 rounded-lg hover:bg-sky-50 transition-colors"

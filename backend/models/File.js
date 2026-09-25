@@ -45,8 +45,19 @@ const fileSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
 );
+
+// Compatibility virtuals for frontend
+fileSchema.virtual('size').get(function () {
+  return this.fileSize;
+});
+
+fileSchema.virtual('mimetype').get(function () {
+  return this.fileType;
+});
 
 fileSchema.index({ project: 1, createdAt: -1 });
 

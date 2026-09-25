@@ -1077,7 +1077,7 @@ export const ProjectDetail = () => {
 
                     <div className="flex items-center gap-1">
                       <a
-                        href={`${API_BASE_URL}/files/${f._id}/download`}
+                        href={`${API_BASE_URL}/files/${f._id}/download?token=${localStorage.getItem('token') || ''}`}
                         target="_blank"
                         rel="noreferrer"
                         className="p-2 text-slate-400 hover:text-sky-600 rounded-lg hover:bg-sky-100 transition-colors"

@@ -21,10 +21,16 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    if (!email.trim() || !password) {
+      setError('Please enter your email and password.');
+      return;
+    }
+
     setLoading(true);
 
     try {
-      await login(email, password);
+      await login(email.trim(), password);
       addToast({
         title: 'Welcome Back!',
         message: 'You have signed in successfully.',
@@ -32,7 +38,21 @@ export const Login = () => {
       });
       navigate(from, { replace: true });
     } catch (err) {
-      setError(err.response?.data?.message || err.message || 'Invalid email or password');
+      console.error('Login error details:', err);
+
+      if (!err.response) {
+        setError('Network error. Please check your internet connection.');
+      } else if (err.response.status === 401) {
+        setError('Invalid email or password.');
+      } else if (err.response.status === 400) {
+        setError(err.response.data?.message || 'Please enter your email and password.');
+      } else if (err.response.status === 405) {
+        setError('Unable to connect to the server. Please try again.');
+      } else if (err.response.status >= 500) {
+        setError('Unable to connect to the server. Please try again.');
+      } else {
+        setError(err.response.data?.message || 'Unable to connect to the server. Please try again.');
+      }
     } finally {
       setLoading(false);
     }

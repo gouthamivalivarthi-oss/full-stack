@@ -86,6 +86,7 @@ exports.uploadFile = async (req, res, next) => {
       success: true,
       message: 'File uploaded successfully',
       data: populatedFile,
+      file: populatedFile,
     });
   } catch (error) {
     if (req.file && fs.existsSync(req.file.path)) {

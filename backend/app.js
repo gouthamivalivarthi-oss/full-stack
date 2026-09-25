@@ -27,13 +27,32 @@ const dummyIo = {
 };
 app.set('io', dummyIo);
 
-// Enable CORS
-app.use(
-  cors({
-    origin: true,
-    credentials: true,
-  })
-);
+// Enable CORS with full preflight OPTIONS support
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:5173',
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (
+      allowedOrigins.includes(origin) ||
+      origin.endsWith('.vercel.app') ||
+      process.env.NODE_ENV !== 'production'
+    ) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({ extended: true, limit: '25mb' }));
@@ -67,8 +86,7 @@ app.use('/uploads', express.static(uploadsDir));
 const healthHandler = (req, res) => {
   res.status(200).json({
     success: true,
-    message: 'Online Project Collaboration Platform API is running smoothly',
-    timestamp: new Date().toISOString(),
+    message: 'Backend API is running',
   });
 };
 app.get('/api/health', healthHandler);
