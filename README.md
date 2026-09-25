@@ -155,6 +155,30 @@ If you prefer separate Vercel projects for the frontend and backend:
 
 ---
 
+## 🌐 Deploy to Render (Web Service)
+
+### Option A: 1-Click Blueprint (render.yaml)
+1. Go to **[Render Dashboard](https://dashboard.render.com/)** → **Blueprints** → **New Blueprint Instance**.
+2. Connect `https://github.com/gouthamivalivarthi-oss/full-stack`.
+3. Render reads `render.yaml` automatically and configures the service.
+4. Click **Apply**.
+
+### Option B: Manual Web Service
+1. In Render Dashboard, click **New +** → **Web Service**.
+2. Connect `https://github.com/gouthamivalivarthi-oss/full-stack`.
+3. Set configuration:
+   - **Root Directory**: `backend` (or leave empty for monorepo)
+   - **Runtime**: `Node`
+   - **Build Command**: `npm install; npm run build`
+   - **Start Command**: `npm start`
+4. Add Environment Variables:
+   - `MONGODB_URI`: `mongodb://gouthamivalivarthi_db_user:8ozQKXbosgcVud30@ac-t0opm9p-shard-00-00.midmq3i.mongodb.net:27017,ac-t0opm9p-shard-00-01.midmq3i.mongodb.net:27017,ac-t0opm9p-shard-00-02.midmq3i.mongodb.net:27017/project_collab?ssl=true&replicaSet=atlas-icbabk-shard-0&authSource=admin&retryWrites=true&w=majority`
+   - `JWT_SECRET`: `collab_platform_jwt_secret_super_secure_key_2026_xyz`
+   - `NODE_ENV`: `production`
+5. Click **Deploy Web Service**.
+
+---
+
 ## 🧪 Production API Endpoints
 
 - **Health Check**: `GET /api/health`
