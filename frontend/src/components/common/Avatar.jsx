@@ -1,4 +1,5 @@
 import React from 'react';
+import { SERVER_BASE_URL } from '../../services/api';
 
 export const Avatar = ({ name = 'User', src, size = 'md', isOnline = false, className = '' }) => {
   const sizeClasses = {
@@ -36,11 +37,19 @@ export const Avatar = ({ name = 'User', src, size = 'md', isOnline = false, clas
     return gradients[index];
   };
 
+  const getAvatarUrl = (imgSrc) => {
+    if (!imgSrc) return '';
+    if (imgSrc.startsWith('http') || imgSrc.startsWith('blob:') || imgSrc.startsWith('data:')) {
+      return imgSrc;
+    }
+    return `${SERVER_BASE_URL}${imgSrc.startsWith('/') ? '' : '/'}${imgSrc}`;
+  };
+
   return (
     <div className={`relative inline-block flex-shrink-0 ${className}`}>
       {src ? (
         <img
-          src={src.startsWith('http') || src.startsWith('blob:') ? src : `http://localhost:5000${src}`}
+          src={getAvatarUrl(src)}
           alt={name}
           className={`${sizeClasses[size]} rounded-full object-cover ring-2 ring-white/80 shadow-xs`}
           onError={(e) => {

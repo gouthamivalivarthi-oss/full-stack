@@ -13,7 +13,13 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     if (user && user._id) {
       // Connect to socket
-      const socketInstance = io(window.location.origin, {
+      const socketUrl =
+        import.meta.env.VITE_SOCKET_URL ||
+        (import.meta.env.VITE_API_URL
+          ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '')
+          : window.location.origin);
+
+      const socketInstance = io(socketUrl, {
         reconnection: true,
         reconnectionAttempts: 10,
         reconnectionDelay: 1000,

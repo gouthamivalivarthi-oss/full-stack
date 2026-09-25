@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import api from '../../services/api';
+import api, { API_BASE_URL } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import { useSocket } from '../../context/SocketContext';
 import { useNotifications } from '../../context/NotificationContext';
@@ -1077,7 +1077,7 @@ export const ProjectDetail = () => {
 
                     <div className="flex items-center gap-1">
                       <a
-                        href={`http://localhost:5000/api/files/${f._id}/download`}
+                        href={`${API_BASE_URL}/files/${f._id}/download`}
                         target="_blank"
                         rel="noreferrer"
                         className="p-2 text-slate-400 hover:text-sky-600 rounded-lg hover:bg-sky-100 transition-colors"

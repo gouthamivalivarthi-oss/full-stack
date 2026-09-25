@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../../services/api';
+import api, { API_BASE_URL } from '../../services/api';
 import { useNotifications } from '../../context/NotificationContext';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import Modal from '../../components/common/Modal';
@@ -224,7 +224,7 @@ export const FileVault = () => {
 
                 <div className="flex items-center gap-1">
                   <a
-                    href={`http://localhost:5000/api/files/${file._id}/download`}
+                    href={`${API_BASE_URL}/files/${file._id}/download`}
                     target="_blank"
                     rel="noreferrer"
                     className="p-1.5 text-slate-500 hover:text-sky-600 rounded-lg hover:bg-sky-50 transition-colors"
