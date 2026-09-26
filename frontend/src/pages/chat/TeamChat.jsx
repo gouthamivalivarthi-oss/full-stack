@@ -248,14 +248,14 @@ export const TeamChat = () => {
                   key={conv._id}
                   onClick={() => setActiveRecipient(other)}
                   className={`p-3.5 flex items-center gap-3 cursor-pointer transition-colors ${
-                    isSelected ? 'bg-sky-50/80 border-r-2 border-sky-500' : 'hover:bg-slate-50'
+                    isSelected ? 'bg-[#FFF8ED] border-r-2 border-[#E9785B]' : 'hover:bg-[#FFFDF9]'
                   }`}
                 >
                   <Avatar name={other.name} src={other.avatar} size="sm" isOnline />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-xs font-bold text-slate-800 truncate">{other.name}</h4>
-                      <span className="text-[10px] text-slate-400">
+                      <h4 className="text-xs font-bold text-[#3D2B24] truncate">{other.name}</h4>
+                      <span className="text-[10px] text-[#8D6E63]">
                         {conv.lastMessage?.createdAt
                           ? new Date(conv.lastMessage.createdAt).toLocaleTimeString([], {
                               hour: '2-digit',
@@ -264,7 +264,7 @@ export const TeamChat = () => {
                           : ''}
                       </span>
                     </div>
-                    <p className="text-[11px] text-slate-400 truncate mt-0.5">
+                    <p className="text-[11px] text-[#8D6E63] truncate mt-0.5">
                       {conv.lastMessage?.content || 'Started conversation'}
                     </p>
                   </div>
@@ -276,11 +276,11 @@ export const TeamChat = () => {
       </div>
 
       {/* Right Messages Room */}
-      <div className="md:col-span-8 flex flex-col h-full bg-slate-50/50">
+      <div className="md:col-span-8 flex flex-col h-full bg-[#FFFDF9]">
         {activeRecipient ? (
           <>
             {/* Room Header */}
-            <div className="p-4 bg-white/90 backdrop-blur-md border-b border-slate-200/80 flex items-center justify-between">
+            <div className="p-4 bg-white/95 backdrop-blur-xl border-b border-[#F6EBDD] flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Avatar
                   name={activeRecipient.name}
@@ -289,8 +289,8 @@ export const TeamChat = () => {
                   isOnline
                 />
                 <div>
-                  <h4 className="text-xs font-bold text-slate-900">{activeRecipient.name}</h4>
-                  <p className="text-[10px] text-slate-400 capitalize">
+                  <h4 className="text-xs font-bold text-[#3D2B24]">{activeRecipient.name}</h4>
+                  <p className="text-[10px] text-[#8D6E63] capitalize">
                     {activeRecipient.role || 'Teammate'} • {activeRecipient.email}
                   </p>
                 </div>
@@ -302,7 +302,7 @@ export const TeamChat = () => {
               {loadingMessages ? (
                 <LoadingSpinner size="sm" text="Loading messages..." />
               ) : messages.length === 0 ? (
-                <div className="text-center py-12 text-slate-400 text-xs">
+                <div className="text-center py-12 text-[#8D6E63] text-xs">
                   <p>Send a message to start collaborating with {activeRecipient.name}!</p>
                 </div>
               ) : (
@@ -319,14 +319,14 @@ export const TeamChat = () => {
                       <div
                         className={`max-w-md p-3.5 rounded-2xl text-xs shadow-xs leading-relaxed ${
                           isMine
-                            ? 'bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-br-none'
-                            : 'bg-white border border-slate-200 text-slate-800 rounded-bl-none'
+                            ? 'bg-gradient-to-r from-[#E9785B] to-[#C85C45] text-white rounded-br-none shadow-[0_4px_15px_rgba(233,120,91,0.25)]'
+                            : 'bg-white border border-[#F6EBDD] text-[#3D2B24] rounded-bl-none shadow-xs'
                         }`}
                       >
                         <p>{msg.content}</p>
                         <div
                           className={`flex items-center justify-end gap-1 mt-1 text-[10px] ${
-                            isMine ? 'text-sky-100' : 'text-slate-400'
+                            isMine ? 'text-white/80' : 'text-[#8D6E63]'
                           }`}
                         >
                           <span>
@@ -335,7 +335,7 @@ export const TeamChat = () => {
                               minute: '2-digit',
                             })}
                           </span>
-                          {isMine && <Check className="w-3 h-3 text-sky-200" />}
+                          {isMine && <Check className="w-3 h-3 text-white/90" />}
                         </div>
                       </div>
                     </div>
@@ -345,8 +345,8 @@ export const TeamChat = () => {
 
               {/* Typing indicator */}
               {isTyping && (
-                <div className="flex items-center gap-2 text-xs text-slate-400 italic">
-                  <span className="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+                <div className="flex items-center gap-2 text-xs text-[#8D6E63] italic">
+                  <span className="w-2 h-2 rounded-full bg-[#E9785B] animate-ping"></span>
                   {typingUser || 'Teammate'} is typing...
                 </div>
               )}
@@ -355,7 +355,7 @@ export const TeamChat = () => {
             </div>
 
             {/* Message Input Box */}
-            <div className="p-3 bg-white border-t border-slate-200/80">
+            <div className="p-3 bg-white border-t border-[#F6EBDD]">
               <form onSubmit={handleSendMessage} className="flex items-center gap-2">
                 <input
                   type="text"
@@ -367,7 +367,7 @@ export const TeamChat = () => {
                 <button
                   type="submit"
                   disabled={!newMessage.trim()}
-                  className="btn-primary p-2.5 rounded-xl cursor-pointer"
+                  className="btn-primary p-2.5 rounded-2xl cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                 </button>

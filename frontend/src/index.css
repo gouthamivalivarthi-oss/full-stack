@@ -4,60 +4,116 @@
 
 @layer base {
   :root {
-    --color-brand-primary: #0c8ee9;
+    --cream: #FFF8ED;
+    --soft-cream: #F6EBDD;
+    --peach: #F5B895;
+    --coral: #E9785B;
+    --terracotta: #C85C45;
+    --lavender: #B9A7E8;
+    --purple: #8F78C8;
+    --sage: #9DB79B;
+    --brown: #3D2B24;
+    --white: #FFFFFF;
+    --color-brand-primary: #E9785B;
   }
   
   body {
-    @apply antialiased bg-slate-50 text-slate-800 selection:bg-sky-500 selection:text-white font-sans;
+    @apply antialiased bg-[#FFF8ED] text-[#3D2B24] selection:bg-[#E9785B] selection:text-white font-sans;
   }
 
-  /* Custom scrollbars */
+  /* Custom warm scrollbars */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
   }
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: #FFF8ED;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-slate-300 rounded-full;
+    @apply bg-[#EDE0CE] rounded-full;
   }
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-slate-400;
+    @apply bg-[#E1CFB8];
   }
 }
 
 @layer components {
+  /* 3D Glass Surface Card */
   .glass-card {
-    @apply bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-sm rounded-2xl;
+    @apply bg-white/90 backdrop-blur-xl border border-[#F6EBDD] shadow-[0_10px_30px_-5px_rgba(61,43,36,0.06)] rounded-3xl transition-all duration-300;
   }
 
   .glass-card-hover {
-    @apply bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-sm rounded-2xl hover:shadow-md hover:border-sky-200 transition-all duration-200;
+    @apply bg-white/90 backdrop-blur-xl border border-[#F6EBDD] shadow-[0_10px_30px_-5px_rgba(61,43,36,0.06)] rounded-3xl hover:shadow-[0_20px_40px_-10px_rgba(233,120,91,0.18)] hover:border-[#F5B895]/60 hover:-translate-y-1 transition-all duration-300;
   }
 
+  /* Dimensional 3D Primary Button */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-sky-500 to-blue-600 text-white font-medium rounded-xl shadow-sm hover:from-sky-600 hover:to-blue-700 active:scale-[0.98] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-[#E9785B] via-[#E9785B] to-[#C85C45] text-white font-semibold rounded-2xl shadow-[0_10px_25px_-5px_rgba(233,120,91,0.45),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:shadow-[0_16px_35px_-5px_rgba(233,120,91,0.6)] hover:-translate-y-0.5 active:translate-y-0.5 active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer border-t border-white/20;
   }
 
+  /* Dimensional 3D Secondary Button */
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-slate-200 text-slate-700 font-medium rounded-xl shadow-sm hover:bg-slate-50 hover:text-slate-900 active:scale-[0.98] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2 px-5 py-3 bg-white/90 backdrop-blur-md border border-[#F6EBDD] text-[#3D2B24] font-semibold rounded-2xl shadow-[0_4px_15px_rgba(61,43,36,0.04)] hover:bg-[#FFF8ED] hover:border-[#F5B895] hover:shadow-[0_8px_25px_rgba(61,43,36,0.08)] hover:-translate-y-0.5 active:translate-y-0.5 active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer;
   }
 
   .btn-danger {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-rose-50 border border-rose-200 text-rose-600 font-medium rounded-xl shadow-sm hover:bg-rose-100 hover:border-rose-300 active:scale-[0.98] transition-all duration-150 disabled:opacity-50 cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-rose-50 border border-rose-200 text-rose-600 font-semibold rounded-2xl shadow-sm hover:bg-rose-100 hover:border-rose-300 active:scale-[0.98] transition-all duration-150 disabled:opacity-50 cursor-pointer;
   }
 
+  /* Warm Input Field */
   .input-field {
-    @apply w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition-all text-sm;
+    @apply w-full px-4 py-3 bg-white/95 border border-[#F6EBDD] rounded-2xl text-[#3D2B24] placeholder-[#8D6E63]/40 focus:outline-none focus:ring-2 focus:ring-[#E9785B]/25 focus:border-[#E9785B] shadow-sm transition-all text-sm;
   }
 
   .badge {
-    @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold;
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
   }
 }
 
-/* Custom glowing and pulse effects */
-.glow-sky {
-  box-shadow: 0 0 20px -5px rgba(12, 142, 233, 0.35);
+/* 3D Perspective & Ambient Glow Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.glow-coral {
+  box-shadow: 0 0 35px -5px rgba(233, 120, 91, 0.4);
+}
+
+.glow-lavender {
+  box-shadow: 0 0 35px -5px rgba(185, 167, 232, 0.45);
+}
+
+.glow-peach {
+  box-shadow: 0 0 35px -5px rgba(245, 184, 149, 0.45);
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(12px) rotate(-2deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 8s ease-in-out infinite;
 }

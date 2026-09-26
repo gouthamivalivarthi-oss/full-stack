@@ -515,22 +515,22 @@ export const ProjectDetail = () => {
             <div className="flex items-center gap-2 mb-2 flex-wrap">
               <Link
                 to="/projects"
-                className="text-xs font-semibold text-slate-400 hover:text-sky-600 transition-colors"
+                className="text-xs font-semibold text-[#8D6E63] hover:text-[#E9785B] transition-colors"
               >
                 Projects
               </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-slate-300" />
-              <span className="text-xs font-semibold text-sky-600 bg-sky-50 px-2.5 py-0.5 rounded-lg border border-sky-100">
+              <ChevronRight className="w-3.5 h-3.5 text-[#EDE0CE]" />
+              <span className="text-xs font-bold text-[#E9785B] bg-[#FDF2EF] px-2.5 py-0.5 rounded-xl border border-[#F7C9BE]">
                 {project.category || 'General'}
               </span>
               <StatusBadge status={project.status} />
               <PriorityBadge priority={project.priority} />
             </div>
 
-            <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-2xl font-extrabold text-[#3D2B24] tracking-tight">
               {project.name}
             </h1>
-            <p className="text-xs text-slate-500 mt-1 max-w-2xl leading-relaxed">
+            <p className="text-xs text-[#8D6E63] mt-1 max-w-2xl leading-relaxed">
               {project.description}
             </p>
           </div>
@@ -541,7 +541,7 @@ export const ProjectDetail = () => {
               onClick={() => setInviteModalOpen(true)}
               className="btn-secondary text-xs px-3.5 py-2"
             >
-              <UserPlus className="w-4 h-4 text-slate-600" />
+              <UserPlus className="w-4 h-4 text-[#8D6E63]" />
               Invite Teammate
             </button>
             <button
@@ -555,7 +555,7 @@ export const ProjectDetail = () => {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex items-center gap-1 border-t border-slate-100 mt-6 pt-4 overflow-x-auto">
+        <div className="flex items-center gap-1.5 border-t border-[#F6EBDD] mt-6 pt-4 overflow-x-auto">
           {[
             { id: 'overview', label: 'Overview', icon: FolderKanban },
             { id: 'kanban', label: 'Kanban Board', icon: Kanban, count: tasks.length },
@@ -571,18 +571,18 @@ export const ProjectDetail = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                className={`flex items-center gap-2 px-3.5 py-2 rounded-2xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-sky-500 text-white shadow-sm shadow-sky-500/20'
-                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                    ? 'bg-gradient-to-r from-[#E9785B] to-[#C85C45] text-white shadow-md shadow-[#E9785B]/25'
+                    : 'text-[#3D2B24]/75 hover:bg-[#FFF8ED] hover:text-[#E9785B]'
                 }`}
               >
                 <Icon className="w-4 h-4" />
                 <span>{tab.label}</span>
                 {tab.count !== undefined && (
                   <span
-                    className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                      isActive ? 'bg-white/20 text-white' : 'bg-slate-200/80 text-slate-600'
+                    className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                      isActive ? 'bg-white/20 text-white' : 'bg-[#F6EBDD] text-[#8D6E63]'
                     }`}
                   >
                     {tab.count}

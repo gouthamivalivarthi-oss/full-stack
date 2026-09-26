@@ -161,7 +161,7 @@ export const ProfileSettings = () => {
         <div className="flex items-center gap-4 text-center sm:text-left">
           <div className="relative group">
             <Avatar name={user?.name} src={user?.avatar} size="lg" isOnline />
-            <label className="absolute bottom-0 right-0 p-1.5 bg-sky-500 text-white rounded-full cursor-pointer hover:bg-sky-600 shadow-md transition-colors">
+            <label className="absolute bottom-0 right-0 p-1.5 bg-[#E9785B] text-white rounded-full cursor-pointer hover:bg-[#C85C45] shadow-md transition-colors">
               <Camera className="w-3.5 h-3.5" />
               <input
                 type="file"

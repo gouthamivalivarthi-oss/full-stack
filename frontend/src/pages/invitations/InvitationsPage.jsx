@@ -82,7 +82,7 @@ export const InvitationsPage = () => {
               className="glass-card p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
             >
               <div className="flex items-start gap-3.5">
-                <div className="p-3 rounded-2xl bg-sky-50 text-sky-600 border border-sky-100 flex-shrink-0">
+                <div className="p-3 rounded-2xl bg-[#FDF2EF] text-[#E9785B] border border-[#F7C9BE] flex-shrink-0">
                   <FolderKanban className="w-6 h-6" />
                 </div>
                 <div>

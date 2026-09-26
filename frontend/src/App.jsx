@@ -7,6 +7,7 @@ import LoadingSpinner from './components/common/LoadingSpinner';
 import AppLayout from './components/layout/AppLayout';
 
 // Pages
+import HomePage from './pages/home/HomePage';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Dashboard from './pages/dashboard/Dashboard';
@@ -27,8 +28,8 @@ const ProtectedRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
-        <LoadingSpinner size="lg" text="Authenticating session..." />
+      <div className="min-h-screen flex items-center justify-center bg-[#FFF8ED]">
+        <LoadingSpinner size="lg" text="Authenticating 3D session..." />
       </div>
     );
   }
@@ -46,7 +47,7 @@ const AdminRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      <div className="min-h-screen flex items-center justify-center bg-[#FFF8ED]">
         <LoadingSpinner size="lg" text="Verifying permissions..." />
       </div>
     );
@@ -63,13 +64,13 @@ const AdminRoute = ({ children }) => {
   return children;
 };
 
-// Public Route (redirects if already authenticated)
+// Public Route (redirects to dashboard if already authenticated)
 const PublicRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      <div className="min-h-screen flex items-center justify-center bg-[#FFF8ED]">
         <LoadingSpinner size="lg" text="Loading..." />
       </div>
     );
@@ -85,7 +86,11 @@ const PublicRoute = ({ children }) => {
 export const App = () => {
   return (
     <Routes>
-      {/* Public Routes */}
+      {/* Public Home & Landing Pages */}
+      <Route path="/" element={<HomePage />} />
+      <Route path="/landing" element={<HomePage />} />
+
+      {/* Public Auth Routes */}
       <Route
         path="/login"
         element={
@@ -103,26 +108,24 @@ export const App = () => {
         }
       />
 
-      {/* Protected Routes inside AppLayout */}
+      {/* Protected Routes inside 3D AppLayout */}
       <Route
-        path="/"
         element={
           <ProtectedRoute>
             <AppLayout />
           </ProtectedRoute>
         }
       >
-        <Route index element={<Navigate to="/dashboard" replace />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="projects" element={<ProjectList />} />
-        <Route path="projects/:id" element={<ProjectDetail />} />
-        <Route path="my-tasks" element={<MyTasks />} />
-        <Route path="chat" element={<TeamChat />} />
-        <Route path="files" element={<FileVault />} />
-        <Route path="invitations" element={<InvitationsPage />} />
-        <Route path="profile" element={<ProfileSettings />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/projects" element={<ProjectList />} />
+        <Route path="/projects/:id" element={<ProjectDetail />} />
+        <Route path="/my-tasks" element={<MyTasks />} />
+        <Route path="/chat" element={<TeamChat />} />
+        <Route path="/files" element={<FileVault />} />
+        <Route path="/invitations" element={<InvitationsPage />} />
+        <Route path="/profile" element={<ProfileSettings />} />
         <Route
-          path="admin"
+          path="/admin"
           element={
             <AdminRoute>
               <AdminDashboard />

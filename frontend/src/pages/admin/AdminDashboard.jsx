@@ -155,14 +155,14 @@ export const AdminDashboard = () => {
     <div className="space-y-6 max-w-7xl mx-auto">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <div className="p-3 bg-purple-100 text-purple-700 rounded-2xl">
+        <div className="p-3 bg-[#F8F6FD] text-[#8F78C8] border border-[#E0D8F6] rounded-2xl shadow-xs">
           <ShieldAlert className="w-7 h-7" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="text-2xl font-extrabold text-[#3D2B24] tracking-tight">
             System Governance & Admin Console
           </h1>
-          <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
+          <p className="text-xs sm:text-sm text-[#8D6E63] mt-0.5">
             Platform metrics, user role governance, workspace audits, and access logs.
           </p>
         </div>
@@ -172,81 +172,81 @@ export const AdminDashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="glass-card p-5 flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <p className="text-xs font-bold text-[#8D6E63] uppercase tracking-wider">
               Total Accounts
             </p>
-            <h3 className="text-2xl font-bold text-slate-800 mt-1">{stats?.totalUsers || users.length}</h3>
+            <h3 className="text-2xl font-extrabold text-[#3D2B24] mt-1">{stats?.totalUsers || users.length}</h3>
           </div>
-          <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl">
+          <div className="p-3 bg-[#FDF2EF] text-[#E9785B] border border-[#F7C9BE] rounded-2xl">
             <Users className="w-6 h-6" />
           </div>
         </div>
 
         <div className="glass-card p-5 flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <p className="text-xs font-bold text-[#8D6E63] uppercase tracking-wider">
               Total Projects
             </p>
-            <h3 className="text-2xl font-bold text-slate-800 mt-1">{stats?.totalProjects || projects.length}</h3>
+            <h3 className="text-2xl font-extrabold text-[#3D2B24] mt-1">{stats?.totalProjects || projects.length}</h3>
           </div>
-          <div className="p-3 bg-sky-50 text-sky-600 rounded-2xl">
+          <div className="p-3 bg-[#FEF6F0] text-[#EE9467] border border-[#FAD6BE] rounded-2xl">
             <FolderKanban className="w-6 h-6" />
           </div>
         </div>
 
         <div className="glass-card p-5 flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <p className="text-xs font-bold text-[#8D6E63] uppercase tracking-wider">
               Sprint Tasks
             </p>
-            <h3 className="text-2xl font-bold text-slate-800 mt-1">{stats?.totalTasks || 0}</h3>
+            <h3 className="text-2xl font-extrabold text-[#3D2B24] mt-1">{stats?.totalTasks || 0}</h3>
           </div>
-          <div className="p-3 bg-emerald-50 text-emerald-600 rounded-2xl">
+          <div className="p-3 bg-[#F6F9F6] text-[#7FA07D] border border-[#D9E6D8] rounded-2xl">
             <CheckSquare className="w-6 h-6" />
           </div>
         </div>
 
         <div className="glass-card p-5 flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <p className="text-xs font-bold text-[#8D6E63] uppercase tracking-wider">
               Vault Documents
             </p>
-            <h3 className="text-2xl font-bold text-slate-800 mt-1">{stats?.totalFiles || 0}</h3>
+            <h3 className="text-2xl font-extrabold text-[#3D2B24] mt-1">{stats?.totalFiles || 0}</h3>
           </div>
-          <div className="p-3 bg-amber-50 text-amber-600 rounded-2xl">
+          <div className="p-3 bg-[#F8F6FD] text-[#8F78C8] border border-[#E0D8F6] rounded-2xl">
             <HardDrive className="w-6 h-6" />
           </div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-2 border-b border-slate-200">
+      <div className="flex items-center gap-4 border-b border-[#F6EBDD]">
         <button
           onClick={() => setActiveTab('users')}
-          className={`pb-3 text-xs font-bold transition-all ${
+          className={`pb-3 text-xs font-bold transition-all cursor-pointer ${
             activeTab === 'users'
-              ? 'border-b-2 border-purple-600 text-purple-700'
-              : 'text-slate-500 hover:text-slate-800'
+              ? 'border-b-2 border-[#8F78C8] text-[#755DB5]'
+              : 'text-[#8D6E63] hover:text-[#3D2B24]'
           }`}
         >
           User Management ({users.length})
         </button>
         <button
           onClick={() => setActiveTab('projects')}
-          className={`pb-3 text-xs font-bold transition-all ${
+          className={`pb-3 text-xs font-bold transition-all cursor-pointer ${
             activeTab === 'projects'
-              ? 'border-b-2 border-purple-600 text-purple-700'
-              : 'text-slate-500 hover:text-slate-800'
+              ? 'border-b-2 border-[#8F78C8] text-[#755DB5]'
+              : 'text-[#8D6E63] hover:text-[#3D2B24]'
           }`}
         >
           All Workspace Repositories ({projects.length})
         </button>
         <button
           onClick={() => setActiveTab('activity')}
-          className={`pb-3 text-xs font-bold transition-all ${
+          className={`pb-3 text-xs font-bold transition-all cursor-pointer ${
             activeTab === 'activity'
-              ? 'border-b-2 border-purple-600 text-purple-700'
-              : 'text-slate-500 hover:text-slate-800'
+              ? 'border-b-2 border-[#8F78C8] text-[#755DB5]'
+              : 'text-[#8D6E63] hover:text-[#3D2B24]'
           }`}
         >
           Platform Audit Logs

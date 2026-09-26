@@ -107,10 +107,10 @@ export const MyTasks = () => {
             <button
               key={status}
               onClick={() => setStatusFilter(status)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+              className={`px-3 py-1.5 rounded-2xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                 statusFilter === status
-                  ? 'bg-sky-500 text-white shadow-xs'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  ? 'bg-gradient-to-r from-[#E9785B] to-[#C85C45] text-white shadow-sm shadow-[#E9785B]/25'
+                  : 'bg-[#FFFDF9] text-[#8D6E63] hover:bg-[#FFF8ED] border border-[#F6EBDD]'
               }`}
             >
               {status === 'ALL' ? 'All Tasks' : status}
@@ -123,10 +123,10 @@ export const MyTasks = () => {
       {loading ? (
         <LoadingSpinner size="lg" text="Loading your tasks..." />
       ) : filteredTasks.length === 0 ? (
-        <div className="glass-card p-12 text-center text-slate-400">
-          <CheckSquare className="w-12 h-12 mx-auto mb-3 text-slate-300" />
-          <h3 className="text-base font-bold text-slate-800">No Tasks Found</h3>
-          <p className="text-xs text-slate-400 mt-1">
+        <div className="glass-card p-12 text-center text-[#8D6E63]">
+          <CheckSquare className="w-12 h-12 mx-auto mb-3 text-[#F5B895]" />
+          <h3 className="text-base font-bold text-[#3D2B24]">No Tasks Found</h3>
+          <p className="text-xs text-[#8D6E63] mt-1">
             {searchQuery || statusFilter !== 'ALL'
               ? 'No tasks matched your current filter criteria.'
               : 'You have no assigned tasks right now! Great job.'}
@@ -137,29 +137,29 @@ export const MyTasks = () => {
           {filteredTasks.map((task) => (
             <div
               key={task._id}
-              className="glass-card p-5 flex flex-col justify-between hover:border-sky-300 hover:shadow-md transition-all group"
+              className="bg-white/90 backdrop-blur-xl p-6 rounded-3xl border border-[#F6EBDD] shadow-[0_10px_30px_-5px_rgba(61,43,36,0.06)] hover:border-[#F5B895] hover:shadow-[0_15px_35px_rgba(233,120,91,0.15)] hover:-translate-y-0.5 transition-all flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-start justify-between gap-2 mb-2">
-                  <span className="text-[11px] font-semibold text-sky-600 bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-100 truncate max-w-[140px]">
+                  <span className="text-[11px] font-bold text-[#E9785B] bg-[#FDF2EF] px-2.5 py-0.5 rounded-xl border border-[#F7C9BE] truncate max-w-[140px]">
                     {task.project?.name || 'Project'}
                   </span>
                   <PriorityBadge priority={task.priority} />
                 </div>
 
-                <h3 className="text-sm font-bold text-slate-800 group-hover:text-sky-600 transition-colors line-clamp-2">
+                <h3 className="text-sm font-extrabold text-[#3D2B24] group-hover:text-[#E9785B] transition-colors line-clamp-2">
                   {task.title}
                 </h3>
 
-                <p className="text-xs text-slate-500 mt-2 line-clamp-3 leading-relaxed">
+                <p className="text-xs text-[#8D6E63] mt-2 line-clamp-3 leading-relaxed">
                   {task.description || 'No detailed instructions provided.'}
                 </p>
               </div>
 
-              <div className="mt-5 pt-3 border-t border-slate-100">
+              <div className="mt-5 pt-3 border-t border-[#F6EBDD]">
                 <div className="flex items-center justify-between text-xs mb-3">
-                  <span className="text-slate-400 text-[11px] flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5 text-slate-400" />
+                  <span className="text-[#8D6E63] text-[11px] flex items-center gap-1 font-medium">
+                    <Calendar className="w-3.5 h-3.5 text-[#E9785B]" />
                     {task.deadline
                       ? new Date(task.deadline).toLocaleDateString()
                       : 'No deadline'}
@@ -168,7 +168,7 @@ export const MyTasks = () => {
                   <select
                     value={task.status}
                     onChange={(e) => handleUpdateStatus(task._id, e.target.value)}
-                    className="px-2 py-1 bg-slate-100 border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 focus:outline-none"
+                    className="px-2.5 py-1 bg-[#FFFDF9] border border-[#F6EBDD] rounded-xl text-xs font-bold text-[#3D2B24] focus:outline-none"
                   >
                     <option value="TODO">TODO</option>
                     <option value="IN PROGRESS">IN PROGRESS</option>
@@ -180,7 +180,7 @@ export const MyTasks = () => {
                 {task.project?._id && (
                   <Link
                     to={`/projects/${task.project._id}`}
-                    className="text-xs font-semibold text-sky-600 hover:text-sky-700 flex items-center justify-between pt-2 border-t border-slate-50"
+                    className="text-xs font-bold text-[#E9785B] hover:text-[#C85C45] flex items-center justify-between pt-2 border-t border-[#F6EBDD]"
                   >
                     <span>Open Project Workspace</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />

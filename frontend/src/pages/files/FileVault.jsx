@@ -192,33 +192,33 @@ export const FileVault = () => {
           {filteredFiles.map((file) => (
             <div
               key={file._id}
-              className="glass-card p-5 flex flex-col justify-between hover:border-sky-300 hover:shadow-md transition-all group"
+              className="bg-white/90 backdrop-blur-xl p-6 rounded-3xl border border-[#F6EBDD] shadow-[0_10px_30px_-5px_rgba(61,43,36,0.06)] hover:border-[#F5B895] hover:shadow-[0_15px_35px_rgba(233,120,91,0.15)] hover:-translate-y-0.5 transition-all flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-start justify-between gap-2 mb-3">
-                  <div className="p-2 rounded-xl bg-slate-100 group-hover:bg-sky-50 transition-colors">
+                  <div className="p-2 rounded-2xl bg-[#FFF8ED] border border-[#F6EBDD] group-hover:bg-[#FDF2EF] transition-colors">
                     {getFileIcon(file.mimetype)}
                   </div>
-                  <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
+                  <span className="text-[10px] font-bold text-[#8D6E63] bg-[#FFF8ED] border border-[#F6EBDD] px-2 py-0.5 rounded-lg">
                     {(file.size / 1024).toFixed(1)} KB
                   </span>
                 </div>
 
                 <h4
-                  className="text-xs font-bold text-slate-800 line-clamp-1 group-hover:text-sky-600 transition-colors"
+                  className="text-xs font-bold text-[#3D2B24] line-clamp-1 group-hover:text-[#E9785B] transition-colors"
                   title={file.originalName}
                 >
                   {file.originalName}
                 </h4>
 
-                <p className="text-[11px] text-sky-600 font-semibold mt-1 truncate">
+                <p className="text-[11px] text-[#E9785B] font-bold mt-1 truncate">
                   {file.project?.name || 'Workspace File'}
                 </p>
               </div>
 
-              <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                <span className="text-[10px] text-slate-400 flex items-center gap-1">
-                  <Calendar className="w-3 h-3 text-slate-400" />
+              <div className="mt-5 pt-3 border-t border-[#F6EBDD] flex items-center justify-between text-xs">
+                <span className="text-[10px] text-[#8D6E63] flex items-center gap-1 font-medium">
+                  <Calendar className="w-3.5 h-3.5 text-[#E9785B]" />
                   {new Date(file.createdAt).toLocaleDateString()}
                 </span>
 
@@ -227,14 +227,14 @@ export const FileVault = () => {
                     href={`${API_BASE_URL}/files/${file._id}/download?token=${localStorage.getItem('token') || ''}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-1.5 text-slate-500 hover:text-sky-600 rounded-lg hover:bg-sky-50 transition-colors"
+                    className="p-1.5 text-[#8D6E63] hover:text-[#E9785B] rounded-xl hover:bg-[#FFF8ED] transition-colors cursor-pointer"
                     title="Download File"
                   >
                     <Download className="w-4 h-4" />
                   </a>
                   <button
                     onClick={() => handleDeleteFile(file._id)}
-                    className="p-1.5 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-rose-50 transition-colors"
+                    className="p-1.5 text-[#8D6E63] hover:text-rose-600 rounded-xl hover:bg-rose-50 transition-colors cursor-pointer"
                     title="Delete File"
                   >
                     <Trash2 className="w-4 h-4" />

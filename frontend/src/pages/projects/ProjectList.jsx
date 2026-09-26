@@ -253,11 +253,11 @@ export const ProjectList = () => {
           {filteredProjects.map((project) => (
             <div
               key={project._id}
-              className="glass-card-hover p-6 flex flex-col justify-between group"
+              className="bg-white/90 backdrop-blur-xl p-6 rounded-3xl border border-[#F6EBDD] shadow-[0_10px_30px_-5px_rgba(61,43,36,0.06)] hover:shadow-[0_20px_40px_-10px_rgba(233,120,91,0.18)] hover:border-[#F5B895]/60 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-start justify-between gap-2 mb-3">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-sky-600 bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-100">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#E9785B] bg-[#FDF2EF] px-2.5 py-0.5 rounded-xl border border-[#F7C9BE]">
                     {project.category || 'General'}
                   </span>
                   <div className="flex items-center gap-1.5">
@@ -267,12 +267,12 @@ export const ProjectList = () => {
                 </div>
 
                 <Link to={`/projects/${project._id}`}>
-                  <h3 className="text-base font-bold text-slate-800 group-hover:text-sky-600 transition-colors line-clamp-1">
+                  <h3 className="text-base font-extrabold text-[#3D2B24] group-hover:text-[#E9785B] transition-colors line-clamp-1">
                     {project.name}
                   </h3>
                 </Link>
 
-                <p className="text-xs text-slate-500 mt-2 line-clamp-3 leading-relaxed">
+                <p className="text-xs text-[#8D6E63] mt-2 line-clamp-3 leading-relaxed">
                   {project.description || 'No description provided.'}
                 </p>
 
@@ -281,13 +281,13 @@ export const ProjectList = () => {
                     {project.tags.slice(0, 3).map((tag, idx) => (
                       <span
                         key={idx}
-                        className="text-[10px] font-medium bg-slate-100 text-slate-600 px-2 py-0.5 rounded-md"
+                        className="text-[10px] font-bold bg-[#FFF8ED] text-[#8D6E63] border border-[#F6EBDD] px-2 py-0.5 rounded-lg"
                       >
                         #{tag}
                       </span>
                     ))}
                     {project.tags.length > 3 && (
-                      <span className="text-[10px] font-medium bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded-md">
+                      <span className="text-[10px] font-bold bg-[#FFF8ED] text-[#8D6E63] border border-[#F6EBDD] px-1.5 py-0.5 rounded-lg">
                         +{project.tags.length - 3}
                       </span>
                     )}
@@ -295,21 +295,21 @@ export const ProjectList = () => {
                 )}
               </div>
 
-              <div className="mt-6 pt-4 border-t border-slate-100">
-                <div className="flex items-center justify-between text-xs text-slate-500 mb-1.5">
-                  <span className="font-medium">Sprint Completion</span>
-                  <span className="font-bold text-slate-700">{project.progress || 0}%</span>
+              <div className="mt-6 pt-4 border-t border-[#F6EBDD]">
+                <div className="flex items-center justify-between text-xs text-[#8D6E63] mb-1.5">
+                  <span className="font-semibold">Sprint Completion</span>
+                  <span className="font-bold text-[#3D2B24]">{project.progress || 0}%</span>
                 </div>
-                <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                <div className="w-full h-2 bg-[#F6EBDD] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-sky-500 to-blue-600 rounded-full transition-all duration-300"
+                    className="h-full bg-gradient-to-r from-[#E9785B] to-[#C85C45] rounded-full transition-all duration-300"
                     style={{ width: `${project.progress || 0}%` }}
                   />
                 </div>
 
-                <div className="flex items-center justify-between mt-4 pt-1 text-xs text-slate-400">
-                  <span className="flex items-center gap-1 text-[11px]">
-                    <Calendar className="w-3.5 h-3.5 text-slate-400" />
+                <div className="flex items-center justify-between mt-4 pt-1 text-xs text-[#8D6E63]">
+                  <span className="flex items-center gap-1 text-[11px] font-medium">
+                    <Calendar className="w-3.5 h-3.5 text-[#E9785B]" />
                     {project.deadline
                       ? new Date(project.deadline).toLocaleDateString()
                       : 'Open ended'}
@@ -317,7 +317,7 @@ export const ProjectList = () => {
 
                   <Link
                     to={`/projects/${project._id}`}
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-sky-600 hover:text-sky-700 group-hover:translate-x-0.5 transition-all"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-[#E9785B] hover:text-[#C85C45] group-hover:translate-x-0.5 transition-all"
                   >
                     Open Workspace <ArrowUpRight className="w-3.5 h-3.5" />
                   </Link>
