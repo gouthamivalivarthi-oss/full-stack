@@ -6,7 +6,7 @@
     "dev": "node scripts/dev.js",
     "server": "node backend/server.js",
     "client": "npm --prefix frontend run dev",
-    "build": "npm --prefix frontend install && npm --prefix frontend run build",
+    "build": "node scripts/build.js",
     "start": "node backend/server.js",
     "seed": "node backend/seed.js"
   },
