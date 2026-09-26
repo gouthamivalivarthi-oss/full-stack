@@ -62,39 +62,43 @@ export const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-sky-950 flex items-center justify-center p-4 sm:p-6 lg:p-8">
-      <div className="w-full max-w-5xl bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[600px]">
-        {/* Left Visual Column */}
-        <div className="lg:col-span-5 bg-gradient-to-br from-sky-600 via-blue-600 to-indigo-800 p-8 sm:p-10 flex flex-col justify-between text-white relative overflow-hidden">
-          <div className="absolute -top-24 -left-24 w-72 h-72 bg-sky-400/20 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-indigo-400/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-emerald-950 to-slate-900 flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
+      {/* Subtle ambient emerald background glow */}
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div className="w-full max-w-5xl bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-emerald-500/20 overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[600px] z-10">
+        {/* Left Visual Column - Green Gradient */}
+        <div className="lg:col-span-5 bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-900 p-8 sm:p-10 flex flex-col justify-between text-white relative overflow-hidden">
+          <div className="absolute -top-24 -left-24 w-72 h-72 bg-emerald-400/25 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-teal-400/20 rounded-full blur-3xl pointer-events-none"></div>
 
           <div>
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
-                <Sparkles className="w-5 h-5 text-sky-200" />
+              <div className="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 shadow-inner">
+                <Sparkles className="w-5 h-5 text-emerald-200" />
               </div>
               <span className="text-xl font-black tracking-tight">CollabSpace</span>
             </div>
 
-            <h2 className="text-3xl font-extrabold tracking-tight leading-tight mb-4">
+            <h2 className="text-3xl font-extrabold tracking-tight leading-tight mb-4 text-white">
               Next-Gen Student & Team Project Collaboration
             </h2>
-            <p className="text-sky-100/80 text-sm leading-relaxed mb-6">
+            <p className="text-emerald-100/85 text-sm leading-relaxed mb-6 font-light">
               Empower engineering teams, students, and project managers to plan sprints, track Kanban workflows, chat in real-time, and share deliverables seamlessly.
             </p>
 
             <div className="space-y-3">
-              <div className="flex items-center gap-3 text-xs text-sky-100">
-                <CheckCircle2 className="w-4 h-4 text-sky-300" />
+              <div className="flex items-center gap-3 text-xs text-emerald-100">
+                <CheckCircle2 className="w-4 h-4 text-emerald-300 shrink-0" />
                 <span>Live Interactive Kanban Board & Task Sprints</span>
               </div>
-              <div className="flex items-center gap-3 text-xs text-sky-100">
-                <CheckCircle2 className="w-4 h-4 text-sky-300" />
+              <div className="flex items-center gap-3 text-xs text-emerald-100">
+                <CheckCircle2 className="w-4 h-4 text-emerald-300 shrink-0" />
                 <span>Real-time Chat with Typing Indicators & Notifications</span>
               </div>
-              <div className="flex items-center gap-3 text-xs text-sky-100">
-                <CheckCircle2 className="w-4 h-4 text-sky-300" />
+              <div className="flex items-center gap-3 text-xs text-emerald-100">
+                <CheckCircle2 className="w-4 h-4 text-emerald-300 shrink-0" />
                 <span>Role-Based Access Control & Document File Vault</span>
               </div>
             </div>
@@ -102,22 +106,22 @@ export const Login = () => {
 
           {/* Quick Demo Accounts Banner */}
           <div className="mt-8 pt-6 border-t border-white/20">
-            <p className="text-xs font-semibold text-sky-200 uppercase tracking-wider mb-2.5">
+            <p className="text-xs font-semibold text-emerald-200 uppercase tracking-wider mb-2.5">
               1-Click Demo Accounts:
             </p>
             <div className="grid grid-cols-3 gap-2">
               <button
                 type="button"
                 onClick={() => handleDemoLogin('admin@example.com', 'Admin')}
-                className="px-2.5 py-2 bg-white/10 hover:bg-white/20 rounded-xl text-[11px] font-medium border border-white/20 transition-all flex flex-col items-center gap-1 cursor-pointer"
+                className="px-2.5 py-2 bg-white/10 hover:bg-white/20 rounded-xl text-[11px] font-medium border border-white/20 transition-all flex flex-col items-center gap-1 cursor-pointer hover:shadow-md"
               >
-                <Shield className="w-3.5 h-3.5 text-purple-300" />
+                <Shield className="w-3.5 h-3.5 text-emerald-200" />
                 Admin
               </button>
               <button
                 type="button"
                 onClick={() => handleDemoLogin('manager@example.com', 'Manager')}
-                className="px-2.5 py-2 bg-white/10 hover:bg-white/20 rounded-xl text-[11px] font-medium border border-white/20 transition-all flex flex-col items-center gap-1 cursor-pointer"
+                className="px-2.5 py-2 bg-white/10 hover:bg-white/20 rounded-xl text-[11px] font-medium border border-white/20 transition-all flex flex-col items-center gap-1 cursor-pointer hover:shadow-md"
               >
                 <Award className="w-3.5 h-3.5 text-amber-300" />
                 Manager
@@ -125,9 +129,9 @@ export const Login = () => {
               <button
                 type="button"
                 onClick={() => handleDemoLogin('student@example.com', 'Student')}
-                className="px-2.5 py-2 bg-white/10 hover:bg-white/20 rounded-xl text-[11px] font-medium border border-white/20 transition-all flex flex-col items-center gap-1 cursor-pointer"
+                className="px-2.5 py-2 bg-white/10 hover:bg-white/20 rounded-xl text-[11px] font-medium border border-white/20 transition-all flex flex-col items-center gap-1 cursor-pointer hover:shadow-md"
               >
-                <User className="w-3.5 h-3.5 text-sky-300" />
+                <User className="w-3.5 h-3.5 text-emerald-200" />
                 Student
               </button>
             </div>
@@ -138,6 +142,10 @@ export const Login = () => {
         <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-center bg-white">
           <div className="max-w-md w-full mx-auto">
             <div className="mb-8">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold mb-3 border border-emerald-200">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Welcome Back</span>
+              </div>
               <h3 className="text-2xl font-bold text-slate-900 tracking-tight">Sign in to your account</h3>
               <p className="text-slate-500 text-sm mt-1">
                 Enter your credentials to access your collaboration workspace
@@ -163,7 +171,7 @@ export const Login = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@example.com"
-                    className="input-field pl-10"
+                    className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-sm"
                   />
                 </div>
               </div>
@@ -180,7 +188,7 @@ export const Login = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="input-field pl-10 pr-10"
+                    className="w-full pl-10 pr-10 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-sm"
                   />
                   <button
                     type="button"
@@ -197,7 +205,7 @@ export const Login = () => {
                   <input
                     type="checkbox"
                     defaultChecked
-                    className="rounded text-sky-600 focus:ring-sky-500 border-slate-300"
+                    className="rounded text-emerald-600 focus:ring-emerald-500 border-slate-300"
                   />
                   <span>Remember me</span>
                 </label>
@@ -207,7 +215,7 @@ export const Login = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full btn-primary py-3 text-sm font-semibold mt-2"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-gradient-to-r from-emerald-600 via-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg shadow-emerald-600/25 active:scale-[0.98] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer mt-2"
               >
                 {loading ? (
                   'Signing in...'
@@ -222,7 +230,7 @@ export const Login = () => {
 
             <div className="mt-8 text-center text-xs text-slate-500">
               Don't have an account yet?{' '}
-              <Link to="/register" className="font-semibold text-sky-600 hover:text-sky-700 hover:underline">
+              <Link to="/register" className="font-semibold text-emerald-600 hover:text-emerald-700 hover:underline">
                 Create an account
               </Link>
             </div>
