@@ -83,16 +83,6 @@ export const Navbar = ({ toggleSidebar }) => {
 
       {/* Right section: Quick actions, notifications, user menu */}
       <div className="flex items-center gap-2 sm:gap-3">
-        {/* Kage ThreeUI Landing Link */}
-        <Link
-          to="/kage"
-          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:text-red-600 hover:bg-red-50/80 rounded-xl transition-all border border-slate-200/60 shadow-xs"
-          title="Open Kage Kyoto 3D Experience"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-red-500" />
-          <span className="hidden sm:inline">Kage</span>
-        </Link>
-
         {/* Direct Messages Link */}
         <Link
           to="/chat"

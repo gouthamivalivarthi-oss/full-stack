@@ -25,7 +25,6 @@ export const Sidebar = ({ isOpen, onClose }) => {
     { name: 'Team Chat', href: '/chat', icon: MessageSquare },
     { name: 'File Vault', href: '/files', icon: FolderArchive },
     { name: 'Invitations', href: '/invitations', icon: MailCheck },
-    { name: 'Kage', href: '/kage', icon: Sparkles },
   ];
 
   if (isAdmin) {

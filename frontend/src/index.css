@@ -61,13 +61,3 @@
 .glow-sky {
   box-shadow: 0 0 20px -5px rgba(12, 142, 233, 0.35);
 }
-
-/* ThreeUI Shader Frame container */
-.shader-frame {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  min-height: 100vh;
-  overflow: hidden;
-  background: #080808;
-}

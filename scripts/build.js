@@ -16,7 +16,7 @@ try {
   console.log('📦 Step 1: Installing frontend dependencies...');
   execSync(`${npmCmd} install`, { cwd: frontendDir, stdio: 'inherit', shell: true });
 
-  console.log('\n⚙️ Step 2: Running Vite build with ThreeUI Kage Landing Page...');
+  console.log('\n⚙️ Step 2: Running Vite frontend production build...');
   execSync(`${npmCmd} run build`, { cwd: frontendDir, stdio: 'inherit', shell: true });
 
   console.log('\n📁 Step 3: Mirroring frontend/dist -> ./dist for Vercel Output Directory...');

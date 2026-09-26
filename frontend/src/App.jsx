@@ -7,7 +7,6 @@ import LoadingSpinner from './components/common/LoadingSpinner';
 import AppLayout from './components/layout/AppLayout';
 
 // Pages
-import KageLandingView from './pages/landing/KageLandingView';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Dashboard from './pages/dashboard/Dashboard';
@@ -83,34 +82,10 @@ const PublicRoute = ({ children }) => {
   return children;
 };
 
-// Root Route Handler: Unauthenticated visitors see KageLandingView, authenticated users go to Dashboard
-const RootHandler = () => {
-  const { isAuthenticated, loading } = useAuth();
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#080808]">
-        <LoadingSpinner size="lg" text="Loading..." />
-      </div>
-    );
-  }
-
-  if (isAuthenticated) {
-    return <Navigate to="/dashboard" replace />;
-  }
-
-  return <KageLandingView />;
-};
-
 export const App = () => {
   return (
     <Routes>
-      {/* Exact ThreeUI Kage Landing Page Routes */}
-      <Route path="/" element={<RootHandler />} />
-      <Route path="/kage" element={<KageLandingView />} />
-      <Route path="/landing" element={<KageLandingView />} />
-
-      {/* Public Authentication Routes */}
+      {/* Public Routes */}
       <Route
         path="/login"
         element={
@@ -130,22 +105,24 @@ export const App = () => {
 
       {/* Protected Routes inside AppLayout */}
       <Route
+        path="/"
         element={
           <ProtectedRoute>
             <AppLayout />
           </ProtectedRoute>
         }
       >
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/projects" element={<ProjectList />} />
-        <Route path="/projects/:id" element={<ProjectDetail />} />
-        <Route path="/my-tasks" element={<MyTasks />} />
-        <Route path="/chat" element={<TeamChat />} />
-        <Route path="/files" element={<FileVault />} />
-        <Route path="/invitations" element={<InvitationsPage />} />
-        <Route path="/profile" element={<ProfileSettings />} />
+        <Route index element={<Navigate to="/dashboard" replace />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="projects" element={<ProjectList />} />
+        <Route path="projects/:id" element={<ProjectDetail />} />
+        <Route path="my-tasks" element={<MyTasks />} />
+        <Route path="chat" element={<TeamChat />} />
+        <Route path="files" element={<FileVault />} />
+        <Route path="invitations" element={<InvitationsPage />} />
+        <Route path="profile" element={<ProfileSettings />} />
         <Route
-          path="/admin"
+          path="admin"
           element={
             <AdminRoute>
               <AdminDashboard />
