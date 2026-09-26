@@ -118,9 +118,14 @@ mountRoutes('');
 
 // Serve static frontend files in production if dist exists
 const fs = require('fs');
-const frontendDist = path.resolve(__dirname, '../frontend/dist');
-if (fs.existsSync(frontendDist)) {
-  app.use(express.static(frontendDist));
+const candidateDistDirs = [
+  path.resolve(__dirname, '../dist'),
+  path.resolve(__dirname, '../frontend/dist'),
+];
+const distDir = candidateDistDirs.find((d) => fs.existsSync(path.join(d, 'index.html')));
+
+if (distDir) {
+  app.use(express.static(distDir));
   app.get('*', (req, res, next) => {
     if (
       req.path.startsWith('/api') ||
@@ -129,7 +134,7 @@ if (fs.existsSync(frontendDist)) {
     ) {
       return next();
     }
-    res.sendFile(path.resolve(frontendDist, 'index.html'));
+    res.sendFile(path.resolve(distDir, 'index.html'));
   });
 }
 
